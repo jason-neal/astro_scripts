@@ -290,7 +290,7 @@ def _parser():
                         help='Calculate the CCF for Sun/model or tellurics '
                         'or both.')
     parser.add_argument('--ftype', help='Select which type the fits file is',
-                        choices=['ARES', 'CRIRES'], default='ARES')
+                        choices=['ARES', 'CRIRES', 'DRACS'], default='ARES')
     parser.add_argument('--fitsext', help='Select fits extention, Default 0.',
                         choices=['0', '1', '2', '3', '4'], default='0')
     #parser.add_argument('--fitsext', default=0, type=int, 
@@ -351,6 +351,11 @@ def main(fname, lines=False, model=False, telluric=False, sun=False,
         d = fits.getdata(fname, fitsext)
         hdr = fits.getheader(fname, fitsext)
         I = d['Extracted_OPT']
+        w = d['Wavelength']*10
+    elif ftype == 'DRACS':
+        d = fits.getdata(fname, fitsext)
+        hdr = fits.getheader(fname, fitsext)
+        I = d['Extracted_DRACS']
         w = d['Wavelength']*10
         #w = np.linspace(hdr['ESO INS WLEN MIN'], hdr['ESO INS WLEN MAX'], len(I)) * 10
     I /= np.median(I)
