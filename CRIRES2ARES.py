@@ -57,7 +57,7 @@ def main(fname, output=False, unit=1, clobber=True):
     I = fits.getdata(fname)
     w = _get_wavelength(fname, unit=unit)
     if not output:
-        output = '%i-%i.fits' % (w.min(), w.max())
+        output = '{0:d}-{1:d}.fits'.format(w.min(), w.max())
     else:
         if not output.lower().endswith('.fits'):
             output += '.fits'
@@ -69,7 +69,7 @@ def main(fname, output=False, unit=1, clobber=True):
     hdr["CRVAL1"] = w[0]
 
     fits.writeto(output, I['Extracted_OPT'], header=hdr, clobber=clobber)
-    print('File writed to: %s' % output)
+    print('File writed to: {0!s}'.format(output))
 
 
 if __name__ == '__main__':
