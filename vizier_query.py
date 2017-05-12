@@ -8,7 +8,7 @@ try:
     from astroquery.vizier import Vizier
 except ImportError:
     url = 'https://astroquery.readthedocs.org/'
-    raise ImportError('astroquery is needed (pip). More info here: %s' % url)
+    raise ImportError('astroquery is needed (pip). More info here: {0!s}'.format(url))
 import argparse
 import warnings
 
@@ -75,9 +75,9 @@ def vizier_query(object, params=None, method='both', coordinate=False):
                 pass
             if ra != 0:
                 break
-        print('%s %s %s' % (object, ra, dec))
+        print('{0!s} {1!s} {2!s}'.format(object, ra, dec))
     else:
-        print('Object: %s' % object)
+        print('Object: {0!s}'.format(object))
 
     parameters = {'Teff': [], 'logg': [], '__Fe_H_': []}
     if params:
@@ -105,12 +105,12 @@ def vizier_query(object, params=None, method='both', coordinate=False):
             if key.startswith('__'):
                 key = '[Fe/H]'
             if method == 'mean':
-                print('\n%s:\tMean value: %s' % (key, mean))
+                print('\n{0!s}:\tMean value: {1!s}'.format(key, mean))
             elif method == 'median':
-                print('\n%s\tMedian value: %s' % (key, median))
+                print('\n{0!s}\tMedian value: {1!s}'.format(key, median))
             else:
-                print('\n%s:\tMean value: %s' % (key, mean))
-                print('%s:\tMedian value: %s' % (key, median))
+                print('\n{0!s}:\tMean value: {1!s}'.format(key, mean))
+                print('{0!s}:\tMedian value: {1!s}'.format(key, median))
 
     return parameters, cat
 

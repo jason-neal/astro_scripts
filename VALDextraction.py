@@ -27,10 +27,10 @@ def VALDmail(wavelength=1000, step=1, wavelengths=None):
     dw = step
     if wavelengths:
         assert hasattr(wavelengths,
-                       '__iter__'), '%s is not iterable' % wavelengths
+                       '__iter__'), '{0!s} is not iterable'.format(wavelengths)
 
         for wavelength in wavelengths:
-            line_interval = '%s, %s\n' % (wavelength - step, wavelength + step)
+            line_interval = '{0!s}, {1!s}\n'.format(wavelength - step, wavelength + step)
             request = request_header
             request += line_interval
             request += request_bottom
@@ -48,7 +48,7 @@ def VALDmail(wavelength=1000, step=1, wavelengths=None):
             raw_input('\nPress RETURN to continue: ')
             os.system('rm -f tmp.mail')
     else:
-        line_interval = '%s, %s\n' % (wavelength - step, wavelength + step)
+        line_interval = '{0!s}, {1!s}\n'.format(wavelength - step, wavelength + step)
         request = request_header
         request += line_interval
         request += request_bottom

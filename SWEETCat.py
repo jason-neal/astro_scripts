@@ -51,7 +51,7 @@ if os.path.isdir(path):
         _download_sweetcat(_sc)
 else:
     os.mkdir(path)
-    print('%s Created' % path)
+    print('{0!s} Created'.format(path))
     print('Downloading SWEET-Cat...')
     _download_sweetcat(_sc)
 

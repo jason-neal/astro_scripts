@@ -59,13 +59,13 @@ if __name__ == '__main__':
     element = args.element
     if not args.output:
         t = fname.split('.')
-        t[0] += '_filtered_%s_%s' % (col, limit)
+        t[0] += '_filtered_{0!s}_{1!s}'.format(col, limit)
         output = '.'.join(t)
     else:
         output = args.output
 
     data = ll_filter(fname, col, limit, sign, element)
-    print('Result saved in %s' % output)
+    print('Result saved in {0!s}'.format(output))
     np.savetxt(output, data,
                fmt=('%9.3f', '%10.1f', '%9.2f', '%9.3f', '%28.1f'),
                header='Wavelength\tEle\t  excit\t  log gf\t\t\t EW',
