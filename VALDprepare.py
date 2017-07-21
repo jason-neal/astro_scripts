@@ -18,23 +18,23 @@ def _parser():
 
 def main(input, output=False):
     if not isinstance(input, str):
-        raise TypeError('Input must be a str. A %s was parsed' % type(input))
+        raise TypeError('Input must be a str. A {0!s} was parsed'.format(type(input)))
     if not isinstance(output, str) and output:
-        raise TypeError('Output must be a str. A %s was parsed' % type(output))
+        raise TypeError('Output must be a str. A {0!s} was parsed'.format(type(output)))
 
     # TODO: Check if the input exists
 
     fname = input.rpartition('.')[0]
     if not output:
-        output = '%s.dat' % fname
-    oref = '%s.ref' % fname
+        output = '{0!s}.dat'.format(fname)
+    oref = '{0!s}.ref'.format(fname)
 
     fout = ''
     fref = ''
     with gzip.open(input, 'r') as lines:
         for i, line in enumerate(lines):
             if i < 2:
-                fout += '# %s' % line.replace("'", '')
+                fout += '# {0!s}'.format(line.replace("'", ''))
             else:
                 fout += line.replace("'", '')
             if 'References' in line:
